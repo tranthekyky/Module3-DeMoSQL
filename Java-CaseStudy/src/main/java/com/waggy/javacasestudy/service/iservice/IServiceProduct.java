@@ -1,11 +1,11 @@
-package com.waggy.javacasestudy.service;
+package com.waggy.javacasestudy.service.iservice;
 
 import java.util.List;
 
-public interface IService <P>{
-    List<P> getAll();
-    P getById(int id);
-    void save(P p);
-    void delete(int id);
-    void update(int id ,P p);
+public interface IServiceProduct<P>{
+    List<P> getAllProducts();
+    P getProductById(int id);
+    boolean addProduct(P p);
+    void deleteProduct(int id);
+    void updateProduct(int id ,P p);
 }

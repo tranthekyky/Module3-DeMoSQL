@@ -1,10 +1,10 @@
 package com.waggy.javacasestudy.model;
 
-public class CategoryProduct {
+public class Category {
     private int idC;
     private String nameC;
 
-    public CategoryProduct(int idC, String nameC) {
+    public Category(int idC, String nameC) {
         this.idC = idC;
         this.nameC = nameC;
     }

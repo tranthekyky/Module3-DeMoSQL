@@ -1,8 +1,10 @@
-package com.waggy.javacasestudy.service;
+package com.waggy.javacasestudy.service.category;
 
-import com.waggy.javacasestudy.model.CategoryProduct;
+import com.waggy.javacasestudy.model.Category;
+import com.waggy.javacasestudy.service.connect.ConnectSQL;
+import com.waggy.javacasestudy.service.iservice.IServiceCategory;
+import com.waggy.javacasestudy.service.iservice.IServiceProduct;
 
-import javax.servlet.RequestDispatcher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,18 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryService implements IService<CategoryProduct> {
+public class CategoryService implements IServiceCategory<Category> {
     private Connection connection = ConnectSQL.getConnectData() ;
 
     @Override
-    public List<CategoryProduct> getAll() {
+    public List<Category> getAllCategory() {
         String sql = "select * from category";
-        List<CategoryProduct> categoryProducts = new ArrayList<>();
+        List<Category> categoryProducts = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                CategoryProduct cate = new CategoryProduct(resultSet.getInt(1), resultSet.getString(2));
+                Category cate = new Category(resultSet.getInt(1), resultSet.getString(2));
                 categoryProducts.add(cate);
             }
         } catch (SQLException e) {
@@ -31,14 +33,14 @@ public class CategoryService implements IService<CategoryProduct> {
     }
 
     @Override
-    public CategoryProduct getById(int id) {
+    public Category getCategoryById(int id) {
         String sql = "select * from category where idC = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                CategoryProduct cate = new CategoryProduct(resultSet.getInt(1), resultSet.getString(2));
+                Category cate = new Category(resultSet.getInt(1), resultSet.getString(2));
                 return cate;
             }
         } catch (SQLException e) {
@@ -47,23 +49,5 @@ public class CategoryService implements IService<CategoryProduct> {
         return null;
     }
 
-    @Override
-    public void save(CategoryProduct categoryProduct) {
 
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public void update(int id, CategoryProduct categoryProduct) {
-
-    }
-
-    public static void main(String[] args) {
-         CategoryService categoryService = new CategoryService();
-        System.out.println(categoryService.getById(2));
-    }
 }

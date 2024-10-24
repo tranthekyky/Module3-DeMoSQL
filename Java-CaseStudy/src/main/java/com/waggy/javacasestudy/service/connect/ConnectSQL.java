@@ -1,4 +1,4 @@
-package com.waggy.javacasestudy.service;
+package com.waggy.javacasestudy.service.connect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

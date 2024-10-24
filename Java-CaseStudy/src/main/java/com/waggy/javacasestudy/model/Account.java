@@ -1,4 +1,4 @@
-package com.waggy.javacasestudy.service.login;
+package com.waggy.javacasestudy.model;
 
 public class Account {
     private int idAcc;
